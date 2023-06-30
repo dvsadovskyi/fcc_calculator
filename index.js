@@ -3,6 +3,7 @@ function App() {
     const [overDis, setOverDis] = React.useState("")
     const [result, setResult] = React.useState("");
 
+
     function handleClear() {
         setCurrDis(0)
         setOverDis("")
@@ -11,10 +12,12 @@ function App() {
 
     function handleNumber(e) {
 
+
         if (currDis.length > 12) {
             setCurrDis(prev => prev)
         } else {
-            if (currDis === "+" || currDis === "-" || currDis === "*" || currDis === "/" || currDis == 0) {
+            if (currDis === "+" || currDis === "-" || currDis === "*" || currDis === "/" || currDis === 0 || currDis === "0" || result) {
+                setResult("")
                 setCurrDis(e.target.innerText)
                 setOverDis(prev => prev + e.target.innerText)
             } else {
@@ -22,16 +25,36 @@ function App() {
                 setOverDis(prev => prev + e.target.innerText)
             }
         }
+
+
     }
 
+
     function handleOper(e) {
+
         if (result) {
             setOverDis(result)
+            setResult("")
         }
-        setCurrDis(e.target.innerText)
-        if (currDis != e.target.innerText) {
-            setOverDis(prev => prev + e.target.innerText)
+
+        let operand = e.target.innerText
+        if (currDis) {
+            setCurrDis(operand)
+            let buf = overDis.slice(-1)
+            let prevtext = overDis.slice(0, -1)
+            if (operand != buf) {
+                if (operand == "-") {
+                    setOverDis(prev => prev + "-")
+                } else {
+                    setOverDis(prevtext + operand)
+                }
+
+            }
+
         }
+
+
+
     }
 
     function handleEquals() {
@@ -46,15 +69,22 @@ function App() {
     }
 
     function handleDec() {
-        if (currDis && !result) {
-            if (currDis.includes(".")) {
-                setCurrDis(prev => prev)
-                setOverDis(prev => prev)
-            } else {
-                setCurrDis(prev => prev + ".")
-                setOverDis(prev => prev + ".")
+        if (currDis === "+" || currDis === "-" || currDis === "*" || currDis === "/") {
+            setCurrDis(prev => prev)
+            setOverDis(prev => prev)
+        } else {
+            if (currDis && !result) {
+                if (currDis.includes(".")) {
+                    setCurrDis(prev => prev)
+                    setOverDis(prev => prev)
+                } else {
+                    setCurrDis(prev => prev + ".")
+                    setOverDis(prev => prev + ".")
+                }
             }
+
         }
+
     }
 
     return (
