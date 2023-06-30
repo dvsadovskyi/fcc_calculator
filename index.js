@@ -1,8 +1,16 @@
 function App() {
+
+
+
+
+
     return (
         <div className="container">
             <div className="calculator">
-                <div id="display"></div>
+                <div id="display">
+                    <div className="display-overal">test</div>
+                    <div className="display-current">test</div>
+                </div>
                 <div className="buttons">
                     <div id="clear">AC</div>
                     <div id="divide">/</div>
@@ -11,13 +19,13 @@ function App() {
                     <div id="eight">8</div>
                     <div id="nine">9</div>
                     <div id="subtract">-</div>
-                    <div id="4">4</div>
-                    <div id="5">5</div>
-                    <div id="6">6</div>
+                    <div id="four">4</div>
+                    <div id="five">5</div>
+                    <div id="six">6</div>
                     <div id="add">+</div>
-                    <div id="1">1</div>
-                    <div id="2">2</div>
-                    <div id="3">3</div>
+                    <div id="one">1</div>
+                    <div id="two">2</div>
+                    <div id="three">3</div>
                     <div id="equals">=</div>
                     <div id="zero">0</div>
                     <div id="decimal">.</div>
