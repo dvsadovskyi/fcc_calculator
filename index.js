@@ -38,22 +38,39 @@ function App() {
         }
 
         let operand = e.target.innerText
+        let lastOp = overDis.slice(-1)
+        let lastTwo = overDis.slice(-2)
+        console.log(lastTwo)
+
         if (currDis) {
             setCurrDis(operand)
-            let buf = overDis.slice(-1)
-            let prevtext = overDis.slice(0, -1)
-            if (operand != buf) {
-                if (operand == "-") {
-                    setOverDis(prev => prev + "-")
+            if (lastTwo === "/-" || lastTwo === "*-" || lastTwo === "--" || lastTwo === "+-") {
+                if (operand === "-") {
+                    setOverDis(prev => prev)
                 } else {
-                    setOverDis(prevtext + operand)
+                    setOverDis(prev => {
+                        let buf = prev.slice(0, -2)
+                        return buf + operand
+                    })
                 }
+            } else {
+                if (lastOp === "/" || lastOp === "*" || lastOp === "+" || lastOp === "-") {
+                    if (operand === "-") {
+                        setOverDis(prev => prev + "-")
+                    } else {
+                        setOverDis(prev => {
+                            let buf = prev.slice(0, -1)
+                            return buf + operand
+                        })
+                    }
 
+                } else {
+                    setOverDis(prev => prev + operand)
+                }
             }
 
+
         }
-
-
 
     }
 
