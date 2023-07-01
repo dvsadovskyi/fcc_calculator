@@ -54,7 +54,7 @@ function App() {
                     })
                 }
             } else {
-                if (lastOp === "/" || lastOp === "*" || lastOp === "+" || lastOp === "-") {
+                if (lastOp === "/`" || lastOp === "*" || lastOp === "+" || lastOp === "-") {
                     if (operand === "-") {
                         setOverDis(prev => prev + "-")
                     } else {
@@ -131,7 +131,7 @@ function App() {
                     <div onClick={handleDec} id="decimal">.</div>
                 </div>
             </div>
-            <footer>test</footer>
+            <footer>by dvsadovskyi</footer>
         </div>
     )
 }
